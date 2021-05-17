@@ -26,7 +26,7 @@ export default class AuthPage extends Component {
       try {
         const action = isSignUp ? signUp : signIn;
         const user = await action(this.state);
-
+        console.log(user);
         onUser(user);
 
         history.push('/');
@@ -41,7 +41,7 @@ export default class AuthPage extends Component {
     }
 
     handleEmailChange = ({ target }) => {
-      this.setState({ name: target.value });
+      this.setState({ email: target.value });
     }
 
     handlePasswordChange = ({ target }) => {
@@ -70,7 +70,7 @@ export default class AuthPage extends Component {
           <p>
             <label>
               <span>Password</span>
-              <input name="password" type="password" value={password} required={true} onChange={this.handlePasswordChange}/>
+              <input name="email" type="password" value={password} required={true} onChange={this.handlePasswordChange}/>
             </label>
           </p>
 
