@@ -12,6 +12,14 @@ import './App.css';
 import AuthPage from '../auth/AuthPage';
 
 class App extends Component {
+  state = {
+    token: window.localStorage.getItem('TOKEN')
+  }
+
+  handleUser = user => {
+    window.localStorage.setItem('TOKEN', user.token);
+    this.setState({ token: user.token });
+  }
 
   render() {
     
@@ -30,7 +38,8 @@ class App extends Component {
 
               <Route path="/auth" exact={true}
                 render={routerProps => (
-                  <AuthPage {...routerProps}/>
+                  <AuthPage {...routerProps}
+                    onUser={this.handleUser}/>
                 )}
               />
 
