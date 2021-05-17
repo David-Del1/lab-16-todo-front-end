@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './AuthPage.css';
+import { signUp, signIn } from '../utils/todo-api.js';
 
 export default class AuthPage extends Component {
     state = {
@@ -13,8 +14,39 @@ export default class AuthPage extends Component {
     handleSwitch = () => {
       this.setState({ isSignUp: !this.state.isSignUp });
     }
-
     
+    handleSubmit = async e => {
+      const { isSignUp } = this.state;
+      const { onUser, history } = this.props;
+
+      e.preventDefault();
+
+      this.setState({ error: '' });
+
+      try {
+        const action = isSignUp ? signUp : signIn;
+        const user = await action(this.state);
+
+        onUser(user);
+
+        history.push('/');
+      }
+      catch (err) {
+        this.setState({ error: err.error });
+      }
+    }
+
+    handleNameChange = ({ target }) => {
+      this.setState({ name: target.value });
+    }
+
+    handleEmailChange = ({ target }) => {
+      this.setState({ name: target.value });
+    }
+
+    handlePasswordChange = ({ target }) => {
+      this.setState({ password: target.value });
+    }
 
     render() {
       const { isSignUp, name, email, password, error } = this.state;
