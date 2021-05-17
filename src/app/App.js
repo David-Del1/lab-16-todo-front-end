@@ -9,10 +9,12 @@ import {
   Redirect
 } from 'react-router-dom';
 import './App.css';
+import AuthPage from '../auth/AuthPage';
 
 class App extends Component {
 
   render() {
+    
     return (
       <div className="App">
         <Router>
@@ -26,9 +28,9 @@ class App extends Component {
                 )}
               />
 
-              <Route path="/resources" exact={true}
+              <Route path="/auth" exact={true}
                 render={routerProps => (
-                  <div>Implement a page of resources</div>
+                  <AuthPage {...routerProps}/>
                 )}
               />
 
