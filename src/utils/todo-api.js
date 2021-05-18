@@ -43,10 +43,14 @@ export async function deleteTodo(id) {
   return response.body;
 }
 
-export async function completedTodo(id) {
+export async function completedTodo(todo) {
   const response = await request
-    .post(`/api/todos/${id}/completed`)
-    .set('Authorization', window.localStoragage.getItem('TOKEN'));
+    .put(`/api/todos/${todo.id}`)
+    .set('Authorization', window.localStorage.getItem('TOKEN'))
+    .send({
+      task: todo.task,
+      completed: true
+    });
 
   return response.body;
 }
@@ -55,7 +59,10 @@ export async function addTodo(todo) {
   const response = await request
     .post('/api/todos')
     .set('Authorization', window.localStorage.getItem('TOKEN'))
-    .send(todo);
+    .send({
+      task: todo.task,
+      completed: false
+    });
 
   return response.body;
 }
