@@ -1,0 +1,19 @@
+.todo-form{
+    background-color: lightcyan;
+    border: solid 5px lightcoral;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    
+}
+
+.todo-status:completed {
+    opacity: 0.5;
+    margin: 5px;
+    
+}
+
+.todo-task {
+    text-align: center;
+}

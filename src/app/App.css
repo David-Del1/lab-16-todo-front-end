@@ -1,10 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Goblin+One&display=swap');
+
 .App {
   height: 100vh;
   display: grid;
   grid-template-rows: auto 1fr auto;
+  color: maroon;
+  font-family: 'Goblin One', cursive;
 }
 
 main {
-  background: #FAF0EA;
+  background: #99d6f3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+h2 {
+  padding: 5px;
 }
 
+li {
+  background-color: rgb(96, 231, 231);
+  margin: 3px;
+  border: 3px solid lightcoral;
+}
+
+.strike {
+  text-decoration: line-through;
+}
