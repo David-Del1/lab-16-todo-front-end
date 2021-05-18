@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './ToDoPage.css';
-import { getTodos, deleteTodo, completedTodo } from '../utils/todo-api';
+import { getTodos, deleteTodo, completedTodo, addTodo } from '../utils/todo-api';
 
 export default class ToDoPage extends Component {
   state = {
@@ -24,7 +24,7 @@ export default class ToDoPage extends Component {
     const { todo, todos } = this.state;
 
     try {
-      const addedTodo = await addTodo({ name: todoName });
+      const addedTodo = await addTodo({ name: todo });
       const updatedTodo = [...todos, addedTodo];
       this.setState({
         todos: updatedTodo,

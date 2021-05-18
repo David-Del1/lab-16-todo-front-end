@@ -10,6 +10,7 @@ import {
 } from 'react-router-dom';
 import './App.css';
 import AuthPage from '../auth/AuthPage';
+import ToDoPage from '../todos/ToDoPage';
 
 class App extends Component {
   state = {
@@ -22,7 +23,8 @@ class App extends Component {
   }
 
   render() {
-    
+    const { token } = this.state;
+
     return (
       <div className="App">
         <Router>
@@ -43,9 +45,11 @@ class App extends Component {
                 )}
               />
 
-              <Route path="/resources/:id"
+              <Route path="/todopage"
                 render={routerProps => (
-                  <div>Implement a page for id {routerProps.match.params.id}</div>
+                  token
+                    ? <ToDoPage {...routerProps}/>
+                    : <Redirect to="/auth"/>
                 )}
               />
 
