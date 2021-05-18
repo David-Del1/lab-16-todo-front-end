@@ -77,20 +77,22 @@ export default class ToDoPage extends Component {
       <div className="ToDoPage">
         
         <form onSubmit={this.handleAdd}>
+          <div className="todo-form">
           Add a new Todo:
-          <input value={todo} onChange={this.handleToDoChange}></input>
+            <input value={todo} onChange={this.handleToDoChange}></input>
+          </div>
         </form>
 
         <ul>
           {todos.map(todo => (
             <li key={todo.id}>
               {todo.completed ? 
-                <h2 style={{ 'textDecoration': 'line-through' }}>{todo.task}</h2>
-                : <h2>{todo.task}</h2>
+                <h2 className="todo-task" style={{ 'textDecoration': 'line-through' }}>{todo.task}</h2>
+                : <h2 className="todo-task">{todo.task}</h2>
               }
               
               <span>{todo.completed}</span>
-              <span>{todo.completed === true ? 'Completed' : 'Get Your butt to Work!'}</span>
+              <span className="todo-status">{todo.completed === true ? 'Completed' : 'Get Your butt to Work!'}</span>
               <button className="completed" onClick={() => this.handleCompleted(todo)}>✅</button>
               <button className="delete" onClick={() => this.handleDelete(todo.id)}>🗑</button>
             </li>
