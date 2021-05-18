@@ -26,3 +26,27 @@ export async function signIn(credentials) {
 
   return response.body;
 }
+
+export async function getTodos() {
+  const response = await request
+    .get('/api/me/todos')
+    .set('Authorization', window.localStorage.getItem('TOKEN'));
+
+  return response.body;
+}
+
+export async function deleteTodo(id) {
+  const response = await request
+    .delete(`/api/todos/${id}`)
+    .set('Authorization', window.localStorage.getItem('TOKEN'));
+
+  return response.body;
+}
+
+export async function completedTodo(id) {
+  const response = await request
+    .post(`/api/todos/${id}/completed`)
+    .set('Authorization', window.localStoragage.getItem('TOKEN'));
+
+  return response.body;
+}
