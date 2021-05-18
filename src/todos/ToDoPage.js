@@ -55,13 +55,14 @@ export default class ToDoPage extends Component {
     }
   }
 
-  handleCompleted = async id => {
+  handleCompleted = async todoObject => {
     const { todos } = this.state;
 
     try {
-      const updatedTodo = await completedTodo(id);
-
-      const updatedTodos = todos.map(todo => todo.id === id ? updatedTodo : todo);
+      
+      const updatedTodo = await completedTodo(todoObject);
+      console.log(updatedTodo);
+      const updatedTodos = todos.map(todo => todo.id === todoObject.id ? updatedTodo : todo);
       this.setState({ todos: updatedTodos });
     }
     catch (err) {
@@ -83,8 +84,13 @@ export default class ToDoPage extends Component {
         <ul>
           {todos.map(todo => (
             <li key={todo.id}>
-              <h2>{todo.task}</h2>
+              {todo.completed ? 
+                <h2 style={{ 'textDecoration': 'line-through' }}>{todo.task}</h2>
+                : <h2>{todo.task}</h2>
+              }
+              
               <span>{todo.completed}</span>
+              <span>{todo.completed === true ? 'Completed' : 'Get Your butt to Work!'}</span>
               <button className="completed" onClick={() => this.handleCompleted(todo)}>✅</button>
               <button className="delete" onClick={() => this.handleDelete(todo.id)}>🗑</button>
             </li>

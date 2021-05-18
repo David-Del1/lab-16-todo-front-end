@@ -44,6 +44,7 @@ export async function deleteTodo(id) {
 }
 
 export async function completedTodo(todo) {
+ 
   const response = await request
     .put(`/api/todos/${todo.id}`)
     .set('Authorization', window.localStorage.getItem('TOKEN'))
